@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -11,6 +11,65 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!-- Bootstrap CSS -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+            <!-- Font Awesome -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <style>
+                
+                .contact-btn {
+                    padding: 15px 40px;
+                    font-size: 1.3rem;
+                    border-radius: 50px;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                }
+                .contact-btn:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                }
+                .modal-content {
+                    border-radius: 15px;
+                    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+                    border: none;
+                }
+                .modal-header {
+                    background: #4b6cb7;
+                    color: white;
+                    border-top-left-radius: 15px;
+                    border-top-right-radius: 15px;
+                    padding: 20px;
+                }
+                .btn-close {
+                    filter: invert(1);
+                }
+                .form-group {
+                    margin-bottom: 20px;
+                }
+                .input-group-text {
+                    background-color: #f8f9fa;
+                }
+                .btn-submit {
+                    background: #4b6cb7;
+                    border: none;
+                    padding: 12px 30px;
+                    font-size: 1.1rem;
+                    transition: all 0.3s;
+                    width: 100%;
+                }
+                .btn-submit:hover {
+                    background: #3a5999;
+                    transform: translateY(-2px);
+                }
+                .alert {
+                    border-radius: 10px;
+                    display: none;
+                }
+                .countdown {
+                    font-weight: bold;
+                    color: #4b6cb7;
+                }
+            </style>
     </head>
     <body>
         <!-- Responsive navbar-->
