@@ -254,7 +254,7 @@
         $message = htmlspecialchars($_POST['message']);
         
         // Dirección de correo destino
-        $to = "info@silviacataldi.com.ar";
+        $to = "info@silviacataldi.com.ar,svcataldi@outlook.com";
         
         // Asunto del correo
         $subject = "Nuevo mensaje de contacto de $name";
