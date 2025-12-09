@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Desarrollo: Sistema de Liquidación de Sueldos Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #f3f4f6; color: #1f2937; }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 600px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 300px; 
+            max-height: 400px; 
+        } 
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        /* Flowchart Connector Lines */
+        .connector {
+            width: 2px;
+            background-color: #94a3b8;
+            height: 20px;
+            margin: 0 auto;
+        }
+        .arrow-down {
+            width: 0; 
+            height: 0; 
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid #94a3b8;
+            margin: 0 auto;
+        }
+    </style>
+    <!-- Palette: Professional & Trust (Blues/Greys/Teal) based on accounting software standards -->
+    <!-- Palette Name: Corporate Trust -->
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-slate-800 text-white p-6 shadow-lg">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-3xl font-bold">Plan de Desarrollo: Sistema de Liquidación de Sueldos</h1>
+            <p class="mt-2 text-slate-300">Arquitectura, Módulos y Estrategia para replicar lógica tipo "Bejerman" en Web</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Intro Section -->
+        <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">Visión del Proyecto</h2>
+            <p class="text-gray-600 mb-4">
+                El objetivo es desarrollar una plataforma SAAS multi-tenant para la liquidación de haberes en Argentina. 
+                El desafío técnico principal radica en la flexibilidad del <strong>Motor de Fórmulas</strong> para adaptarse a los constantes cambios de los Convenios Colectivos de Trabajo (CCT) y la normativa de AFIP (Libro de Sueldos Digital).
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div class="bg-blue-50 p-4 rounded border border-blue-100">
+                    <div class="text-3xl font-bold text-blue-600">Multi</div>
+                    <div class="text-sm text-gray-500">Empresa / Tenant</div>
+                </div>
+                <div class="bg-teal-50 p-4 rounded border border-teal-100">
+                    <div class="text-3xl font-bold text-teal-600">100%</div>
+                    <div class="text-sm text-gray-500">Web / Cloud</div>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded border border-indigo-100">
+                    <div class="text-3xl font-bold text-indigo-600">LSD</div>
+                    <div class="text-sm text-gray-500">Exportación AFIP</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart: Module Complexity Breakdown -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-bold text-slate-700 mb-2">Complejidad por Módulo</h3>
+            <p class="text-sm text-gray-500 mb-4">Estimación de esfuerzo y complejidad lógica basada en la normativa argentina.</p>
+            <div class="chart-container">
+                <canvas id="complexityChart"></canvas>
+            </div>
+            <p class="mt-4 text-xs text-gray-500 italic">
+                Nota: El "Motor de Fórmulas" es el núcleo más complejo debido al parseo de variables y condicionales.
+            </p>
+        </div>
+
+        <!-- Flowchart: The Liquidation Engine Logic -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-bold text-slate-700 mb-2">Flujo del Motor de Cálculo</h3>
+            <p class="text-sm text-gray-500 mb-4">Cómo el sistema debe procesar una liquidación paso a paso.</p>
+            
+            <div class="flex flex-col items-center justify-center space-y-1">
+                <!-- Node 1 -->
+                <div class="bg-slate-100 border-l-4 border-blue-500 p-3 w-full max-w-sm rounded shadow-sm">
+                    <h4 class="font-bold text-sm">1. Inputs (Entradas)</h4>
+                    <p class="text-xs">Legajo Empleado + Novedades (Hs Extras) + Valores CCT</p>
+                </div>
+                <!-- Arrow -->
+                <div class="connector"></div>
+                <div class="arrow-down"></div>
+                
+                <!-- Node 2 -->
+                <div class="bg-slate-100 border-l-4 border-indigo-500 p-3 w-full max-w-sm rounded shadow-sm">
+                    <h4 class="font-bold text-sm">2. Intérprete de Fórmulas</h4>
+                    <p class="text-xs">Parsea variables: <code>{BASICO} * {ANTIGUEDAD_COEF}</code></p>
+                </div>
+                <!-- Arrow -->
+                <div class="connector"></div>
+                <div class="arrow-down"></div>
+
+                <!-- Node 3 -->
+                <div class="bg-slate-100 border-l-4 border-teal-500 p-3 w-full max-w-sm rounded shadow-sm">
+                    <h4 class="font-bold text-sm">3. Cálculo en Cascada</h4>
+                    <ul class="text-xs list-disc list-inside">
+                        <li>Remunerativos (Suma Bruta)</li>
+                        <li>No Remunerativos</li>
+                        <li>Deducciones (% sobre Bruto)</li>
+                    </ul>
+                </div>
+                <!-- Arrow -->
+                <div class="connector"></div>
+                <div class="arrow-down"></div>
+
+                <!-- Node 4 -->
+                <div class="bg-slate-100 border-l-4 border-green-500 p-3 w-full max-w-sm rounded shadow-sm">
+                    <h4 class="font-bold text-sm">4. Persistencia y Salida</h4>
+                    <p class="text-xs">Guardar en DB -> Generar PDF -> Generar TXT (LSD)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart: Concept Distribution -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-bold text-slate-700 mb-2">Tipos de Conceptos a Liquidar</h3>
+            <p class="text-sm text-gray-500 mb-4">Distribución típica de ítems en un recibo de sueldo complejo.</p>
+            <div class="chart-container">
+                <canvas id="conceptChart"></canvas>
+            </div>
+            <p class="mt-4 text-xs text-gray-500">
+                La flexibilidad para editar los "Adicionales de Convenio" es lo que diferenciará tu sistema.
+            </p>
+        </div>
+
+        <!-- Database Schema Strategy -->
+        <div class="bg-white rounded-lg shadow-md p-6 overflow-y-auto max-h-[400px]">
+            <h3 class="text-lg font-bold text-slate-700 mb-2">Esquema de Base de Datos (Entidades Core)</h3>
+            <p class="text-sm text-gray-500 mb-4">Estructura relacional sugerida para soportar Multi-Tenancy y Fórmulas.</p>
+            
+            <div class="space-y-4">
+                <!-- Entity 1 -->
+                <div class="border border-gray-200 rounded p-3">
+                    <div class="flex items-center mb-2">
+                        <span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
+                        <h4 class="font-bold text-sm">Empresa (Tenant)</h4>
+                    </div>
+                    <p class="text-xs text-gray-600">ID, Razón Social, CUIT, Domicilio, Configuración AFIP.</p>
+                </div>
+
+                <!-- Entity 2 -->
+                <div class="border border-gray-200 rounded p-3">
+                    <div class="flex items-center mb-2">
+                        <span class="w-3 h-3 bg-indigo-500 rounded-full mr-2"></span>
+                        <h4 class="font-bold text-sm">Legajo (Empleado)</h4>
+                    </div>
+                    <p class="text-xs text-gray-600">ID, EmpresaID, CUIL, Fecha Ingreso, Categoría, Obra Social, Estado (Activo/Licencia).</p>
+                </div>
+
+                <!-- Entity 3 -->
+                <div class="border border-gray-200 rounded p-3">
+                    <div class="flex items-center mb-2">
+                        <span class="w-3 h-3 bg-teal-500 rounded-full mr-2"></span>
+                        <h4 class="font-bold text-sm">Concepto (La Fórmula)</h4>
+                    </div>
+                    <p class="text-xs text-gray-600">ID, Código (ej. 101), Nombre, <strong>FormulaScript</strong> (ej. "BASICO/30*DIAS"), Tipo (Rem/NoRem/Desc).</p>
+                </div>
+
+                <!-- Entity 4 -->
+                <div class="border border-gray-200 rounded p-3">
+                    <div class="flex items-center mb-2">
+                        <span class="w-3 h-3 bg-orange-500 rounded-full mr-2"></span>
+                        <h4 class="font-bold text-sm">Liquidación Detalle</h4>
+                    </div>
+                    <p class="text-xs text-gray-600">ID, Periodo, EmpleadoID, ConceptoID, Cantidad, Importe Unitario, Importe Total.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech Stack & Tools -->
+        <div class="md:col-span-2 bg-slate-800 text-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-bold mb-4">Stack Tecnológico Recomendado</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-slate-700 p-4 rounded text-center">
+                    <div class="font-bold text-blue-300">Frontend</div>
+                    <div class="text-sm">HTML + Bootstrap + JavaScript (jQuery o Vanilla)</div>
+                    <div class="text-xs text-gray-400 mt-1">Librerías: AG Grid (Tablas), Tailwind.</div>
+                </div>
+                <div class="bg-slate-700 p-4 rounded text-center">
+                    <div class="font-bold text-green-300">Backend</div>
+                    <div class="text-sm">PHP 8.2 + Apache</div>
+                    <div class="text-xs text-gray-400 mt-1">Motor de cálculo robusto.</div>
+                </div>
+                <div class="bg-slate-700 p-4 rounded text-center">
+                    <div class="font-bold text-orange-300">Base de Datos</div>
+                    <div class="text-sm">MySQL</div>
+                    <div class="text-xs text-gray-400 mt-1">Transacciones ACID obligatorias.</div>
+                </div>
+                <div class="bg-slate-700 p-4 rounded text-center">
+                    <div class="font-bold text-purple-300">Infra</div>
+                    <div class="text-sm">AWS / Vercel</div>
+                    <div class="text-xs text-gray-400 mt-1">CI/CD Automático.</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-center p-6 text-gray-500 text-sm">
+        <p>Planificación preliminar para sistema de Payroll Argentina. No se utilizaron SVGs ni diagramas externos.</p>
+    </footer>
+
+    <script>
+        // --- Shared Configurations ---
+        Chart.defaults.font.family = "'Roboto', sans-serif";
+        Chart.defaults.color = '#475569';
+
+        // --- Tooltip Callback for Multiline Labels ---
+        const tooltipPlugin = {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        } else {
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        // --- Chart 1: Complexity Breakdown (Bar Chart) ---
+        const ctxComplexity = document.getElementById('complexityChart').getContext('2d');
+        // Labels split for wrapping requirement
+        const complexityLabels = [
+            ['Gestión de', 'Legajos'], 
+            ['Carga de', 'Novedades'], 
+            ['Motor de', 'Fórmulas'], 
+            ['Reportes', 'Legales (931/LSD)'], 
+            ['Seguridad y', 'Permisos']
+        ];
+        
+        new Chart(ctxComplexity, {
+            type: 'bar',
+            data: {
+                labels: complexityLabels,
+                datasets: [{
+                    label: 'Nivel de Complejidad (1-10)',
+                    data: [4, 5, 10, 8, 6],
+                    backgroundColor: [
+                        '#94a3b8', // Legajos
+                        '#64748b', // Novedades
+                        '#0f172a', // Fórmulas (Most complex - dark)
+                        '#334155', // Reportes
+                        '#475569'  // Seguridad
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...tooltipPlugin,
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 12,
+                        title: { display: true, text: 'Esfuerzo de Desarrollo' }
+                    }
+                }
+            }
+        });
+
+        // --- Chart 2: Concept Distribution (Donut Chart) ---
+        const ctxConcept = document.getElementById('conceptChart').getContext('2d');
+        const conceptLabels = [
+            ['Haberes', 'Remunerativos'],
+            ['Haberes No', 'Remunerativos'],
+            ['Retenciones', 'de Ley'],
+            ['Asignaciones', 'Familiares'],
+            ['Otros' ,'Descuentos']
+        ];
+
+        new Chart(ctxConcept, {
+            type: 'doughnut',
+            data: {
+                labels: conceptLabels,
+                datasets: [{
+                    data: [45, 15, 25, 10, 5],
+                    backgroundColor: [
+                        '#3b82f6', // Blue (Remunerativos)
+                        '#14b8a6', // Teal (No Remunerativos)
+                        '#ef4444', // Red (Retenciones)
+                        '#f59e0b', // Amber (Asignaciones)
+                        '#64748b'  // Grey (Otros)
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...tooltipPlugin,
+                    legend: {
+                        position: 'right',
+                        labels: { boxWidth: 12, padding: 20 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
