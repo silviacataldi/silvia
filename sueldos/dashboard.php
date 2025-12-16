@@ -38,7 +38,7 @@ $empresas = $stmt->fetchAll();
         <div class="container">
             <span class="navbar-brand">Estudio Contable</span>
             <span class="navbar-text text-white">
-                Hola, <?= htmlspecialchars($_SESSION['user_nombre']) ?> | <a href="logout.php" class="text-white">Salir</a>
+                Hola, <?= htmlspecialchars($_SESSION['user_nombre']) ?> | <a href="include/logout.php" class="text-white">Salir</a>
             </span>
         </div>
     </nav>
@@ -70,12 +70,12 @@ $empresas = $stmt->fetchAll();
                 <div class="card h-100 border-dashed bg-transparent d-flex align-items-center justify-content-center" style="border: 2px dashed #ccc;">
                     <div class="card-body text-center">
                         <h5 class="text-muted">Nueva Empresa</h5>
-                        <a href="#" class="btn btn-outline-success mt-2">+ Crear Cliente</a>
+                        <a href="cliente_form.php" class="btn btn-outline-success mt-2">+ Crear Cliente</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+<?php require_once 'include/layout_foot.php'; ?>
 </body>
 </html>

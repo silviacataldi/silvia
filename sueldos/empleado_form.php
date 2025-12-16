@@ -1,7 +1,7 @@
 <?php
 // empleado_form.php
 require_once 'include/db.php';
-
+require_once 'include/auth_check.php';
 
 $empleado = [
     'id' => '', 'cuil' => '', 'nombre' => '', 
@@ -112,6 +112,6 @@ include 'include/layout_head.php';
         </div>
     </div>
 </div>
-
+<?php require_once 'include/layout_foot.php'; ?>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 // conceptos.php
 require_once 'include/db.php';
-
+require_once 'include/auth_check.php';
 
 
 // Consulta: Traemos conceptos PROPIOS y los GLOBALES (tenant_id IS NULL)
@@ -83,6 +83,6 @@ include 'include/layout_head.php';
         </table>
     </div>
 </div>
-
+<?php require_once 'include/layout_foot.php'; ?>
 </body>
 </html>

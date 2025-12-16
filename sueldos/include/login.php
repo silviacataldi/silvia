@@ -1,6 +1,6 @@
 <?php
 // login.php
-require_once 'include/db.php';
+require_once 'db.php';
 session_start();
 
 $error = '';
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_nombre'] = $user['nombre'];
         
         // Redirigir a la selección de empresa
-        header("Location: dashboard.php");
+        header("Location: ../dashboard.php");
         exit;
     } else {
         $error = "Credenciales inválidas.";

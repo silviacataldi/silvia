@@ -12,14 +12,17 @@ if (!isset($_SESSION['user_id'])) {
 // (Omitimos esta validación si estamos justo en la página de selección)
 $pagina_actual = basename($_SERVER['PHP_SELF']);
 
-if (!isset($_SESSION['tenant_id']) && $pagina_actual !== 'dashboard.php') {
-    // Si está logueado pero no eligió empresa, lo mandamos al dashboard
+// LISTA BLANCA: Páginas permitidas sin tener empresa seleccionada
+$paginas_globales = ['dashboard.php', 'cliente_form.php', 'logout.php'];
+
+if (!isset($_SESSION['tenant_id']) && !in_array($pagina_actual, $paginas_globales)) {
+    // Si no eligió empresa y quiere entrar a liquidar, lo mandamos al dashboard
     header("Location: dashboard.php");
     exit;
 }
 
 // Si todo está bien, definimos la variable global para usar en los scripts
-// Esto reemplaza tu antigua variable $tenant_id_actual hardcodeada
+
 if (isset($_SESSION['tenant_id'])) {
     $tenant_id_actual = $_SESSION['tenant_id'];
     $tenant_nombre_actual = $_SESSION['tenant_nombre'];

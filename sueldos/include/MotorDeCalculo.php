@@ -1,5 +1,6 @@
 <?php
 // MotorDeCalculo.php
+require_once 'include/auth_check.php';
 
 class MotorDeCalculo {
     private array $contexto = [];

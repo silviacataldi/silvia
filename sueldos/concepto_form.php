@@ -146,6 +146,6 @@ include 'include/layout_head.php';
         </div>
     </div>
 </div>
-
+<?php require_once 'include/layout_foot.php'; ?>
 </body>
 </html>
